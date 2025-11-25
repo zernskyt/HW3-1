@@ -13,26 +13,26 @@ void setup() {
 }
 
 void loop() {
-  rainbow(3);   
+  rainbow(8);   // 數字越小越快，建議 5~15 最好看
 }
 
-
+// 超級簡單彩虹函式
 void rainbow(uint8_t wait) {
-  for (int i = 0; i < 256; i++) {        
+  for (int i = 0; i < 256; i++) {         // 紅→綠
     setColorHSV(i, 255, 255);
     delay(wait);
   }
-  for (int i = 0; i < 256; i++) {         
+  for (int i = 0; i < 256; i++) {         // 綠→藍
     setColorHSV(255 - i, 255, 255);
     delay(wait);
   }
-  for (int i = 0; i < 256; i++) {        
-    setColorHSV(i + 170, 255, 255);      
+  for (int i = 0; i < 256; i++) {         // 藍→紅（完成一個循環）
+    setColorHSV(i + 170, 255, 255);       // 170 是藍到紅的偏移
     delay(wait);
   }
 }
 
-
+// 把 HSV 的 H（0-360）轉成 RGB（超簡化版，夠用又漂亮）
 void setColorHSV(int h, int s, int v) {
   h = h % 360;
   float c = v * s / 255.0;
